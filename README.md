@@ -37,4 +37,4 @@
 ## Race Condition Detection
 Степан
 ## Property-Based Testing
-Степаннн
+Степан
