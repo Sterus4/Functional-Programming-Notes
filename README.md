@@ -109,8 +109,9 @@ Erlang так же позволяет довольно хороший интер
 
 
 
-[Small Talk REPL](https://live.exept.de/doc/online/english/getstart/TOP.html#REPLMODE)
-[Clojure REPL](https://clojure.org/guides/repl/introduction)
+Прочитать подробнее:
+1. [Small Talk REPL](https://live.exept.de/doc/online/english/getstart/TOP.html#REPLMODE)
+2. [Clojure REPL](https://clojure.org/guides/repl/introduction)
 
 
 ## Автоматические тесты - виды
@@ -122,8 +123,54 @@ Erlang так же позволяет довольно хороший интер
 ## Test coverage
 Марк
 
-## doctest ? 
-Степан
+## Doctest
+
+Doctest - еще один вид автоматического тестирования
+
+Суть метода очень проста: давайте к документации нашей функции добавим тесты
+Таким образом, описание функции включает в себя:
+1. Текстовое описание
+2. Примеры использоваия ***в виде испольняемых тестов***
+
+Пример на языке Python:
+```python
+def factorial(n):
+    """Return the factorial of n,
+    an exact integer >= 0.
+
+    >>> [factorial(n) for n in range(6)]
+    [1, 1, 2, 6, 24, 120]
+    >>> factorial(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: n must be >= 0
+............................................
+```
+Далее запустим проверку документации нашего файла при помощи утилиты:
+```bash
+$ python -m doctest -v example.py
+Trying:
+    [factorial(n) for n in range(6)]
+Expecting:
+    [1, 1, 2, 6, 24, 120]
+ok
+```
+Зачем это надо?
+Данные тесты очень эффективны, потому что люди часто забывают изменить документацию,
+когда меняют что либо в реализации функции. Предположим, вам необходимо использовать
+некоторую библиотеку lib.py, которая не снабжена doc тестами. 
+Вы прочитали документацию к функционалу,
+написали свой код, исходя из предположения, что документация отражает действительность,
+но ваша программа исполняется некорректно. После чего вы не понимаете на чьей стороне ошибка -
+либо ошиблись вы, либо документация устарела.
+
+Подобной проблемы можно было избежать, если бы разработчик библиотеки релизовал в ней doc тесты.
+После очередного изменения библиотеки, он запустил бы ее тесты, и, если бы они не прошли, 
+изменил бы документацию на корректную
+
+Прочитать подробнее
+1. [Haskell doctest](https://hackage.haskell.org/package/doctest)
+2. [Python doctest](https://docs.python.org/3/library/doctest.html)
 
 ## Golden Master Testing
 Степан
